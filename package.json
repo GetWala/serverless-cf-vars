@@ -11,7 +11,7 @@
     "url": "https://gitlab.com/kabo/serverless-cf-vars.git"
   },
   "author": "Calle Kabo",
-  "license": "ISC",
+  "license": "COIL",
   "dependencies": {
     "lodash": "4.17.4"
   }
