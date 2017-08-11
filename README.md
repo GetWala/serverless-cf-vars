@@ -63,4 +63,7 @@ Inspired by [serverless-pseudo-parameters](https://www.npmjs.com/package/serverl
 
 Because the same syntax is used for variables in both `serverless.yml` and in cloudformation templates, there's currently no way to use variables in the generated cloudformation template. This plugin works around that by transforming `#{}` into `${}` after serverless has taken care of all its variable substitutions.
 
+## License
+
+Released under the [Copyfree Open Innovation License](http://coil.apotheon.org/).
 
