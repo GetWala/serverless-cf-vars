@@ -1,14 +1,13 @@
 var _ = require('lodash')
 
-function replaceChildNodes(dictionary) {
+function replaceChildNodes(dictionary, insideSub) {
   _.forEach(dictionary, function(value, key) {
     if (_.isPlainObject(value) || _.isArray(value)) {
-      return replaceChildNodes(value)
+      return replaceChildNodes(value, insideSub || key === 'Fn::Sub')
     }
     if (typeof value === 'string' && value.search(/#{([^}]+)}/) !== -1) {
-      dictionary[key] = {
-        'Fn::Sub': value.replace(/#{([^}]+)}/g, '${$1}')
-      }
+      const newValue = value.replace(/#{([^}]+)}/g, '${$1}')
+      dictionary[key] = insideSub ? newValue : { 'Fn::Sub': newValue }
     }
   })
   return dictionary
