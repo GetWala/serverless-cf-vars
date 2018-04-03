@@ -11,9 +11,8 @@
     "url": "https://gitlab.com/kabo/serverless-cf-vars.git"
   },
   "author": {
-    "name": "Calle Kabo",
-    "email": "calle.kabo@gmail.com",
-    "url": "https://tech.kabo.kiwi/"
+    "name": "Jared Leonard",
+    "email": "jared@getwala.com"
   },
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
