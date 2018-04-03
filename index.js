@@ -27,6 +27,9 @@ class ServerlessCfVars {
     _.forEach(template.Resources, function(resource) {
       replaceChildNodes(resource.Properties)
     })
+    _.forEach(template.Outputs, function(output) {
+      replaceChildNodes(output)
+    })
   }
 }
 module.exports = ServerlessCfVars
