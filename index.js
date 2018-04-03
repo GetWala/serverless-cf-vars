@@ -1,13 +1,24 @@
 var _ = require('lodash')
 
-function replaceChildNodes(dictionary, insideSub) {
+function replaceChildNodes(dictionary) {
   _.forEach(dictionary, function(value, key) {
     if (_.isPlainObject(value) || _.isArray(value)) {
-      return replaceChildNodes(value, insideSub || key === 'Fn::Sub')
+      return replaceChildNodes(value)
     }
     if (typeof value === 'string' && value.search(/#{([^}]+)}/) !== -1) {
-      const newValue = value.replace(/#{([^}]+)}/g, '${$1}')
-      dictionary[key] = insideSub ? newValue : { 'Fn::Sub': newValue }
+      dictionary[key] = value.replace(/#{([^}]+)}/g, '${$1}')
+    }
+  })
+  return dictionary
+}
+
+function replaceOutputNodes(dictionary) {
+  _.forEach(dictionary, function(value, key) {
+    if (_.isPlainObject(value) || _.isArray(value)) {
+      return replaceOutputNodes(value)
+    }
+    if (typeof value === 'string' && value.search(/#{([^}]+)}/) !== -1) {
+      dictionary[key] = value.replace(/#{([^}]+)}/g, '${$1}')
     }
   })
   return dictionary
@@ -28,7 +39,7 @@ class ServerlessCfVars {
       replaceChildNodes(resource.Properties)
     })
     _.forEach(template.Outputs, function(output) {
-      replaceChildNodes(output)
+      replaceOutputNodes(output)
     })
   }
 }
