@@ -1,6 +1,6 @@
 {
   "name": "serverless-cf-vars",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Allows you to use Cloudformation pseudo parameters and substitute in other variables in your serverless.yml.",
   "main": "index.js",
   "scripts": {
